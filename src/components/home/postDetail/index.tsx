@@ -1,5 +1,5 @@
 import { LeftOutlined } from '@ant-design/icons';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Divider, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IPost } from '../../../models/post.interface';
@@ -50,6 +50,7 @@ export const PostDetail = () => {
                         </div>
                         <h2>{post?.title}</h2>
                         <div dangerouslySetInnerHTML={{ __html: post != null ? post.description : '' }} />
+                        <Divider />
                         <CommentList postId={Number(id)}/>
                 </Card>
             </Col>

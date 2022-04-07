@@ -30,7 +30,7 @@ export const Home = () => {
     }
 
     return (
-        <Row style={{ background: '#f0f2f5' }} justify="space-between" align="middle">
+        <Row style={{ background: '#f0f2f5', minHeight: '79vh' }} justify="space-between" align="middle">
             {posts?.map((item) => (
             <Col>
                 <Card
