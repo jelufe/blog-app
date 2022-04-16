@@ -2,7 +2,7 @@ import { Avatar, Card, Col, Row } from "antd";
 import Meta from "antd/lib/card/Meta";
 import { useEffect, useState } from "react";
 import { IPost } from "../../models/post.interface";
-import { GetPosts } from "../../services/post";
+import { GetAllPosts } from "../../services/post";
 import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
@@ -17,7 +17,7 @@ export const Home = () => {
     async function initializePosts() {
         setLoading(true);
 
-        const posts = await GetPosts();
+        const posts = await GetAllPosts();
 
         setLoading(false);
 

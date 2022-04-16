@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css';
 import './index.css';
 import { Layout, Menu, Breadcrumb, Avatar } from 'antd';
-import { UserOutlined, FormOutlined } from '@ant-design/icons';
+import { UserOutlined, FormOutlined, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router';
 import { UserDropdown } from './userDropdown';
 import { Footer } from 'antd/lib/layout/layout';
@@ -46,6 +46,10 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                         <SubMenu key="posts" icon={<FormOutlined />} title="Publicações">
                             <Menu.Item key="3" onClick={() => navigate('/posts')}>Listar Publicações</Menu.Item>
                             <Menu.Item key="4" onClick={() => navigate('/posts/create')}>Criar Publicação</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="comments" icon={<CommentOutlined />} title="Comentários">
+                            <Menu.Item key="5" onClick={() => navigate('/comments')}>Listar Comentários</Menu.Item>
+                            <Menu.Item key="6" onClick={() => navigate('/comments/create')}>Criar Comentário</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

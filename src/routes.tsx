@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { CommentForm } from "./components/comments/form"
+import { ListComments } from "./components/comments/list"
 import { Home } from "./components/home"
 import { PostDetail } from "./components/home/postDetail"
 import { LayoutApp } from "./components/layoutApp"
@@ -71,6 +73,21 @@ export const RoutesApp = () => {
                     } />
                     <Route path='/posts/:id/details' element={
                         <LayoutApp children={<PostDetail/>}/>
+                    } />
+                    <Route path='/comments' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<ListComments />} paths={['Comentários', 'Listar Comentários']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/comments/create' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<CommentForm />} paths={['Comentários', 'Criar Comentário']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/comments/:id' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<CommentForm />} paths={['Comentários', 'Atualizar Comentário']} />
+                        </ProtectedLayout>
                     } />
                 </Routes>
             </BrowserRouter>

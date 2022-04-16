@@ -22,6 +22,7 @@ export const AuthProvider = ({children}: IAuthProvider) => {
         const response = await LoginRequest(email, password);
 
         var decoded = jwtDecode<IJWTUser>(response.data.token);
+
         const payload = {
             token: response.data.token,
             userId: decoded.userId,

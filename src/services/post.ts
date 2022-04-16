@@ -2,6 +2,17 @@ import { IComment } from "../models/comment.interface";
 import { IPost } from "../models/post.interface";
 import { Api } from "./api";
 
+export async function GetAllPosts() {
+    try {
+        const api = new Api();
+        const reponse = await api.instance.get('post/all');
+
+        return reponse.data.data as IPost[];
+    } catch (error) {
+        return null;
+    }
+}
+
 export async function GetPosts() {
     try {
         const api = new Api();
