@@ -37,7 +37,11 @@ export const CommentForm = () => {
                 form.setFieldsValue(comment);
             }
         } else {
+            setLoading(true);
+
             await loadPosts();
+
+            setLoading(false);
         }
     }
 
@@ -114,7 +118,11 @@ export const CommentForm = () => {
                                 <Form.Item name="postId" label="Publicação" rules={[{ required: true }]}>
                                     <Select
                                         showSearch
+                                        optionFilterProp="children"
                                         placeholder="Selecione a Publicação"
+                                        filterOption={(input: any, option: any) =>
+                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        }
                                     >
                                         {posts?.map((item) => (
                                             <Select.Option value={item.postId}>{item.title}</Select.Option>

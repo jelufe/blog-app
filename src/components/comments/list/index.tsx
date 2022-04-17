@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IComment } from "../../../models/comment.interface";
 import { GetComments, RemoveComment } from "../../../services/comment";
+import { DownloadCommentsPdf } from "../downloadCommentsPdf";
 
 export const ListComments = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -82,6 +83,7 @@ export const ListComments = () => {
                     </Row>
                 : 
                     <ConfigProvider renderEmpty={() => <Empty description="Nenhum registro encontrado"/>}>
+                        <DownloadCommentsPdf comments={comments ? comments : []}/>
                         <Table 
                             columns={columns}
                             dataSource={comments}

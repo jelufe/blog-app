@@ -1,10 +1,11 @@
-import { LoadingOutlined } from "@ant-design/icons";
-import { ConfigProvider, Empty, message, Row, Space, Spin, Table, Tag } from "antd"
+import { FilePdfOutlined, LoadingOutlined } from "@ant-design/icons";
+import { Button, ConfigProvider, Empty, message, Row, Space, Spin, Table, Tag } from "antd"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { UserTypeEnum } from "../../../enums/UserTypeEnum";
 import { IUser } from "../../../models/user.interface";
 import { GetUsers, RemoveUser } from "../../../services/user";
+import { DownloadUsersPdf } from "../downloadUsersPdf";
 
 export const ListUsers = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -106,6 +107,7 @@ export const ListUsers = () => {
                     </Row>
                 :
                     <ConfigProvider renderEmpty={() => <Empty description="Nenhum registro encontrado"/>}>
+                        <DownloadUsersPdf users={users ? users : []}/>
                         <Table 
                             columns={columns}
                             dataSource={users}

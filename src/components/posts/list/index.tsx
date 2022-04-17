@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { IPost } from "../../../models/post.interface";
 import { GetPosts, RemovePost } from "../../../services/post";
+import { DownloadPostsPdf } from "../downloadPostsPdf";
 
 export const ListPosts = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -75,6 +76,7 @@ export const ListPosts = () => {
                     </Row>
                 : 
                     <ConfigProvider renderEmpty={() => <Empty description="Nenhum registro encontrado"/>}>
+                        <DownloadPostsPdf posts={posts ? posts : []}/>
                         <Table 
                             columns={columns}
                             dataSource={posts}
