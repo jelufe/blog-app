@@ -1,14 +1,17 @@
 import axios, { AxiosInstance } from "axios";
 import { getUserLocalStorage } from "../context/providers/util";
+import ENV from "../envs/env.json";
 
 export class Api {
     public instance: AxiosInstance;
+    public baseApiUrl: string = ENV.BlogApi;
+    public user: any;
 
     constructor() {
-        const user = getUserLocalStorage();
+        this.user = getUserLocalStorage();
 
         this.instance = axios.create({
-            baseURL: 'https://localhost:44367/api/',
+            baseURL: this.baseApiUrl,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -17,9 +20,9 @@ export class Api {
         this.instance.interceptors.request.use(
             (config) => {
 
-                if (user?.token) {
+                if (this.user?.token) {
                     config.headers = {
-                        Authorization: 'Bearer ' + user?.token
+                        Authorization: 'Bearer ' + this.user?.token
                     }
                 }
 
@@ -28,5 +31,9 @@ export class Api {
             error => {
                 Promise.reject(error)
             });
+    }
+
+    public getToken(): string {
+        return 'Bearer ' + this.user?.token;
     }
 }
