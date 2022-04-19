@@ -1,5 +1,5 @@
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Col, message, PageHeader, Row, Upload } from "antd";
+import { Button, Col, Form, message, PageHeader, Row, Upload } from "antd";
 import { Api } from "../../../services/api";
 
 export const ImageForm = () => {
@@ -37,11 +37,9 @@ export const ImageForm = () => {
                     height: '50vh'
                 }}
             >
-                <Col span={24}>
-                    <Upload {...props}>
-                        <Button icon={<UploadOutlined />}>Clique para enviar o arquivo</Button>
-                    </Upload>
-                </Col>
+                <Upload {...props}>
+                    <Button icon={<UploadOutlined />}>Clique para enviar o arquivo</Button>
+                </Upload>
             </Row>
         </div>
     )
