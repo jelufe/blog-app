@@ -46,16 +46,16 @@ export async function GetComments(postId: number) {
     }
 }
 
-export async function InsertPost(title: string, description: string, userId: number) {
+export async function InsertPost(title: string, description: string, userId: number, imageId: number) {
     const api = new Api();
-    const request = await api.instance.post('post', {title, description, userId});
+    const request = await api.instance.post('post', {title, description, userId, imageId});
 
     return request.data;
 }
 
-export async function UpdatePost(postId: number, title: string, description: string, userId: number) {
+export async function UpdatePost(postId: number, title: string, description: string, userId: number, imageId: number) {
     const api = new Api();
-    const request = await api.instance.put('post', {postId, title, description, userId});
+    const request = await api.instance.put('post', {postId, title, description, userId, imageId});
 
     return request.data;
 }

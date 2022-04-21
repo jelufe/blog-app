@@ -7,6 +7,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { getUserLocalStorage } from "../../../context/providers/util";
 import { LoadingOutlined } from "@ant-design/icons";
+import { GetImages } from "../../../services/image";
+import { IImage } from "../../../models/image.interface";
 
 export const PostForm = () => {
     const user = getUserLocalStorage();
@@ -17,6 +19,7 @@ export const PostForm = () => {
     let [post, setPost] = useState<IPost | null>();
     const [description, setDescription] = useState('');
     const [form] = Form.useForm();
+    let [images, setImages] = useState<IImage[] | []>();
 
     useEffect(() => {
         initializePost();
@@ -26,6 +29,8 @@ export const PostForm = () => {
         if (id) {
             setLoading(true);
 
+            await loadImages();
+
             const post = await GetPost(Number(id));
 
             setLoading(false);
@@ -33,15 +38,29 @@ export const PostForm = () => {
             if (post) {
                 setPost(post);
                 setDescription(post.description);
-                form.setFieldsValue(post);
+                form.setFieldsValue({title: post.title, imageId: post.image.imageId});
             }
+        } else {
+            setLoading(true);
+
+            await loadImages();
+
+            setLoading(false);
         }
     }
 
-    async function onFinish(values: {title: string}) {
+    async function loadImages() {
+        const images = await GetImages();
+
+        if (images) {
+            setImages(images);
+        }
+    }
+
+    async function onFinish(values: {title: string, imageId: number}) {
         if(id) {
             try {
-                await UpdatePost(Number(id), values.title, description, user.userId);
+                await UpdatePost(Number(id), values.title, description, user.userId, values.imageId);
                 message.success('Publicação atualizada com sucesso');
     
                 navigate('/posts');
@@ -50,7 +69,7 @@ export const PostForm = () => {
             }
         } else {
             try {
-                await InsertPost(values.title, description, user.userId);
+                await InsertPost(values.title, description, user.userId, values.imageId);
                 message.success('Publicação criada com sucesso');
     
                 navigate('/posts');
@@ -86,8 +105,8 @@ export const PostForm = () => {
                             <Form
                                 form={form}
                                 name="login"
-                                labelCol={{ span: 2 }}
-                                wrapperCol={{ span: 22 }}
+                                labelCol={{ span: 4 }}
+                                wrapperCol={{ span: 20 }}
                                 onFinish={onFinish}
                             >
                                 <Form.Item
@@ -96,6 +115,21 @@ export const PostForm = () => {
                                     rules={[{ required: true, message: 'Digite o Título!' }]}
                                 >
                                     <Input />
+                                </Form.Item>
+
+                                <Form.Item name="imageId" label="Imagem de Capa" rules={[{ required: true }]}>
+                                    <Select
+                                        showSearch
+                                        optionFilterProp="children"
+                                        placeholder="Selecione a Imagem"
+                                        filterOption={(input: any, option: any) =>
+                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        }
+                                    >
+                                        {images?.map((item) => (
+                                            <Select.Option value={item.imageId}>{item.name}</Select.Option>
+                                        ))}
+                                    </Select>
                                 </Form.Item>
 
                                 <Form.Item 

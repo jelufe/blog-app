@@ -6,4 +6,8 @@ export interface IPost {
         userId: number;
         name: string;
     }
+    image: {
+        imageId: number;
+        name: string;
+    }
 }

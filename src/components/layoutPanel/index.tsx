@@ -52,7 +52,8 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                             <Menu.Item key="6" onClick={() => navigate('/comments/create')}>Criar Comentário</Menu.Item>
                         </SubMenu>
                         <SubMenu key="images" icon={<FileImageOutlined />} title="Imagens">
-                            <Menu.Item key="7" onClick={() => navigate('/images/create')}>Enviar Imagem</Menu.Item>
+                            <Menu.Item key="7" onClick={() => navigate('/images')}>Listar Imagens</Menu.Item>
+                            <Menu.Item key="8" onClick={() => navigate('/images/create')}>Enviar Imagem</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

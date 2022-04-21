@@ -4,6 +4,7 @@ import { ListComments } from "./components/comments/list"
 import { Home } from "./components/home"
 import { PostDetail } from "./components/home/postDetail"
 import { ImageForm } from "./components/images/form"
+import { ListImages } from "./components/images/list"
 import { LayoutApp } from "./components/layoutApp"
 import { LayoutPanel } from "./components/layoutPanel"
 import { Login } from "./components/login"
@@ -93,6 +94,11 @@ export const RoutesApp = () => {
                     <Route path='/images/create' element={
                         <ProtectedLayout>
                             <LayoutPanel children={<ImageForm />} paths={['Imagens', 'Enviar Imagem']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/images' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<ListImages />} paths={['Imagens', 'Listar Imagens']} />
                         </ProtectedLayout>
                     } />
                 </Routes>
