@@ -1,4 +1,5 @@
 import { IComment } from "../models/comment.interface";
+import { ILike } from "../models/like.interface";
 import { IPost } from "../models/post.interface";
 import { IVisualization } from "../models/visualization.interface";
 import { Api } from "./api";
@@ -58,6 +59,17 @@ export async function GetVisualization(userId: number | null, sessionId: string 
         });
 
         return reponse.data.data as IVisualization;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function GetLike(postId: number) {
+    try {
+        const api = new Api();
+        const reponse = await api.instance.get(`post/${postId}/like`);
+
+        return reponse.data.data as ILike;
     } catch (error) {
         return null;
     }

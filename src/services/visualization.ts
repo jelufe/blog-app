@@ -1,6 +1,6 @@
 import { Api } from "./api";
 
-export async function InsertNotification(sessionId: string | null, userId: number | null, postId: number) {
+export async function InsertVisualization(sessionId: string | null, userId: number | null, postId: number) {
     const api = new Api();
     const request = await api.instance.post('visualization', {sessionId, userId, postId});
 
