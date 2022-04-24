@@ -1,13 +1,16 @@
 import { Line } from "@ant-design/charts";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Row, Spin } from "antd";
+import { Col, Row, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IDashboard } from "../../models/dashboard.interface";
+import { GetDashboard } from "../../services/dashboard";
 
 export const DashboardCharts = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
     const navigate = useNavigate();
     let [loading, setLoading] = useState<boolean>();
+    let [dashboard, setDashboard] = useState<IDashboard | null>();
 
     useEffect(() => {
         initializeCharts();
@@ -16,31 +19,23 @@ export const DashboardCharts = () => {
     async function initializeCharts() {
         setLoading(true);
 
-        setLoading(false);
-    }
+        const dashboard = await GetDashboard();
 
-    const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-      ];
+        setLoading(false);
+
+        if (dashboard)
+            setDashboard(dashboard);
+    }
     
-      const config = {
-        data,
-        height: 400,
-        xField: 'year',
+    const config = {
+        height: 200,
+        xField: 'name',
         yField: 'value',
         point: {
           size: 5,
           shape: 'diamond',
         },
-      };
+    };
 
     return (
         <div>
@@ -56,7 +51,34 @@ export const DashboardCharts = () => {
                         <Spin tip="Carregando..." indicator={antIcon} />
                     </Row>
                 :
-                    <Line {...config} />
+                <div>
+                    <Row>
+                        <Col span={12} style={{padding: '4%'}}>
+                            <h3 style={{ textAlign: 'center', marginBottom: '2vh'}}>Usuários que mais comentaram no mês</h3>
+                            <Line data={dashboard?.usersMostCommentsInMonth ? dashboard?.usersMostCommentsInMonth : []} {...config} />
+                        </Col>
+                        <Col span={12} style={{padding: '4%'}}>
+                            <h3 style={{ textAlign: 'center', marginBottom: '2vh'}}>Publicações mais comentadas no mês</h3>
+                            <Line data={dashboard?.postsMostCommentsInMonth ? dashboard?.postsMostCommentsInMonth : []} {...config} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={12} style={{padding: '4%'}}>
+                            <h3 style={{ textAlign: 'center', marginBottom: '2vh'}}>Publicações mais visualizadas no mês</h3>
+                            <Line data={dashboard?.postsMostViewsInMonth ? dashboard?.postsMostViewsInMonth : []} {...config} />
+                        </Col>
+                        <Col span={12} style={{padding: '4%'}}>
+                            <h3 style={{ textAlign: 'center', marginBottom: '2vh'}}>Publicações mais compartilhadas no mês</h3>
+                            <Line data={dashboard?.postsMostSharesInMonth ? dashboard?.postsMostSharesInMonth : []} {...config} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={12} style={{padding: '4%'}}>
+                            <h3 style={{ textAlign: 'center', marginBottom: '2vh'}}>Publicações mais curtidas no mês</h3>
+                            <Line data={dashboard?.postsMostLikesInMonth ? dashboard?.postsMostLikesInMonth : []} {...config} />
+                        </Col>
+                    </Row>
+                </div>
             }
         </div>
     )
