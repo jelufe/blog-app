@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css';
 import './index.css';
 import { Layout, Menu, Breadcrumb, Avatar } from 'antd';
-import { UserOutlined, FormOutlined, CommentOutlined, FileImageOutlined } from '@ant-design/icons';
+import { UserOutlined, FormOutlined, CommentOutlined, FileImageOutlined, NotificationOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router';
 import { UserDropdown } from './userDropdown';
 import { Footer } from 'antd/lib/layout/layout';
@@ -54,6 +54,10 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                         <SubMenu key="images" icon={<FileImageOutlined />} title="Imagens">
                             <Menu.Item key="7" onClick={() => navigate('/images')}>Listar Imagens</Menu.Item>
                             <Menu.Item key="8" onClick={() => navigate('/images/create')}>Enviar Imagem</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="notifications" icon={<NotificationOutlined />} title="Notificações">
+                            <Menu.Item key="9" onClick={() => navigate('/notifications')}>Listar Notificações</Menu.Item>
+                            <Menu.Item key="10" onClick={() => navigate('/notifications/create')}>Criar Notificação</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

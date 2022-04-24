@@ -8,6 +8,8 @@ import { ListImages } from "./components/images/list"
 import { LayoutApp } from "./components/layoutApp"
 import { LayoutPanel } from "./components/layoutPanel"
 import { Login } from "./components/login"
+import { NotificationForm } from "./components/notifications/form"
+import { ListNotifications } from "./components/notifications/list"
 import { PostForm } from "./components/posts/form"
 import { ListPosts } from "./components/posts/list"
 import { Profile } from "./components/profile"
@@ -99,6 +101,21 @@ export const RoutesApp = () => {
                     <Route path='/images' element={
                         <ProtectedLayout>
                             <LayoutPanel children={<ListImages />} paths={['Imagens', 'Listar Imagens']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/notifications' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<ListNotifications />} paths={['Notificações', 'Listar Notificações']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/notifications/create' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<NotificationForm />} paths={['Notificações', 'Criar Notificação']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/notifications/:id' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<NotificationForm />} paths={['Notificações', 'Atualizar Notificação']} />
                         </ProtectedLayout>
                     } />
                 </Routes>
