@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { CommentForm } from "./components/comments/form"
 import { ListComments } from "./components/comments/list"
+import { DashboardCharts } from "./components/dashboard"
 import { Home } from "./components/home"
 import { PostDetail } from "./components/home/postDetail"
 import { ImageForm } from "./components/images/form"
@@ -48,6 +49,11 @@ export const RoutesApp = () => {
                     <Route path='/users' element={
                         <ProtectedLayout>
                             <LayoutPanel children={<ListUsers />} paths={['Usuários', 'Listar Usuários']} />
+                        </ProtectedLayout>
+                    } />
+                    <Route path='/dashboard' element={
+                        <ProtectedLayout>
+                            <LayoutPanel children={<DashboardCharts />} paths={['Dashboard', 'Ver Dashboard']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/users/create' element={
