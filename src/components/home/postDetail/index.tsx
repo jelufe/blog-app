@@ -1,4 +1,4 @@
-import { LeftOutlined, LikeOutlined } from '@ant-design/icons';
+import { LeftOutlined, LikeOutlined, WhatsAppOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Divider, message, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { CommentList } from '../commentList';
 import { v4 as uuidv4 } from 'uuid';
 import { InsertLike, RemoveLike } from '../../../services/like';
 import { ILike } from '../../../models/like.interface';
+import { InsertSharing } from '../../../services/sharing';
 
 export const PostDetail = () => {
     const navigate = useNavigate();
@@ -57,6 +58,7 @@ export const PostDetail = () => {
     {
         if (user) {
             if (like) {
+                console.log(like);
                 await RemoveLike(Number(id));
 
                 try {
@@ -64,8 +66,10 @@ export const PostDetail = () => {
 
                     if (like)
                         setLike(like);
+                    else
+                        setLike(undefined);
                 } catch {
-                    setLike(null);  
+                    setLike(undefined);
                 }
             } else {
                 await InsertLike(Number(id));
@@ -75,8 +79,10 @@ export const PostDetail = () => {
 
                     if (like)
                         setLike(like);
+                    else
+                        setLike(undefined);
                 } catch {
-                    setLike(null);  
+                    setLike(undefined);  
                 }
             }
         } else {
@@ -109,6 +115,21 @@ export const PostDetail = () => {
         }
     }
 
+    async function addSharing() {
+        if (!sessionId) {
+            setSessionLocalStorage(uuidv4());
+            sessionId = getSessionLocalStorage();
+        }
+
+        if (user) {
+            await InsertSharing(sessionId, user.userId, Number(id));
+        } else {
+            await InsertSharing(sessionId, null, Number(id));
+        }
+
+        window.open(`https://api.whatsapp.com/send/?text=${window.location.href}`, '_blank', 'noopener,noreferrer');
+    }
+
     async function openHome() {
         navigate('/');
     }
@@ -133,8 +154,11 @@ export const PostDetail = () => {
                                 </div>
                             </Col>
                             <Col span={12}>
+                                <div style={{ float: 'right', marginLeft: '2%' }}>
+                                    <Button shape="circle" onClick={addLike} type={like || like != null ? "primary" : "default"} icon={<LikeOutlined />} />
+                                </div>
                                 <div style={{ float: 'right' }}>
-                                    <Button shape="circle" onClick={addLike} type={like ? "primary" : "default"} icon={<LikeOutlined />} />
+                                    <Button shape="circle" onClick={addSharing} type="primary" icon={<WhatsAppOutlined />} />
                                 </div>
                             </Col>
                         </Row>
