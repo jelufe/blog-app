@@ -12,13 +12,17 @@ export const UserDropdown = () => {
     const handleMenuClick = (e: { key: string; }) => {
         if (e.key === '1') {
             setDropdownVisible(false);
-            navigate('/profile');
+            navigate('/dashboard');
         }
         if (e.key === '2') {
             setDropdownVisible(false);
-            navigate('/profile/password');
+            navigate('/profile');
         }
         if (e.key === '3') {
+            setDropdownVisible(false);
+            navigate('/profile/password');
+        }
+        if (e.key === '4') {
             setDropdownVisible(false);
             removeUserLocalStorage();
             navigate('/login');
@@ -31,9 +35,10 @@ export const UserDropdown = () => {
 
     const menu = (
         <Menu style={{ marginTop: '2vh'}} onClick={handleMenuClick}>
-            <Menu.Item key="1">Meu Perfil</Menu.Item>
-            <Menu.Item key="2">Alterar Senha</Menu.Item>
-            <Menu.Item key="3">Sair</Menu.Item>
+            <Menu.Item key="1">Painel</Menu.Item>
+            <Menu.Item key="2">Meu Perfil</Menu.Item>
+            <Menu.Item key="3">Alterar Senha</Menu.Item>
+            <Menu.Item key="4">Sair</Menu.Item>
         </Menu>
     );
 

@@ -1,5 +1,5 @@
-import { LoadingOutlined } from "@ant-design/icons";
-import { Col, PageHeader, Row, Spin } from "antd";
+import { LoadingOutlined, UserOutlined } from "@ant-design/icons";
+import { Avatar, Col, PageHeader, Row, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { getUserLocalStorage } from "../../context/providers/util";
 import { UserTypeEnum } from "../../enums/UserTypeEnum";
@@ -70,6 +70,12 @@ export const Profile = () => {
                         }}
                     />
                     <Col span={24}>
+                        <Row
+                            justify='center'
+                            align='middle'
+                        >
+                            <UserOutlined style={{ fontSize: 100 }} />
+                        </Row>
                         <Row
                             justify='center'
                             align='middle'

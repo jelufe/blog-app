@@ -1,3 +1,4 @@
+import { UserOutlined } from "@ant-design/icons";
 import { List, Form, Button, message, Avatar } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useEffect, useState } from "react";
@@ -52,7 +53,7 @@ export const CommentList = ({postId} : {postId: number}) => {
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                            avatar={<Avatar icon={<UserOutlined />} />}
                             title={item.user?.name}
                             description={item.message}
                         />

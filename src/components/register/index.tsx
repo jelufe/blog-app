@@ -29,6 +29,14 @@ export const Register = () => {
 
     }
 
+    async function openLogin() {
+        navigate('/login');
+    }
+
+    async function openHome() {
+        navigate('/');
+    }
+
     return (
         <Row
             justify='center'
@@ -46,7 +54,9 @@ export const Register = () => {
             >
                 <Col span={24}>
                     <div>
-                        <h2 style={{ textAlign: 'center', marginBottom: '5vh' }}>Blog</h2>
+                        <h2 style={{ textAlign: 'center', marginBottom: '5vh' }}>
+                            <a onClick={openHome}>Blog</a>
+                        </h2>
                     </div>
                     <Form
                         name="register"
@@ -99,6 +109,7 @@ export const Register = () => {
                             Registrar 
                             </Button>
                         </Form.Item>
+                        Já tem uma conta? <a onClick={openLogin}>clique aqui para entrar!</a>
                     </Form>
                 </Col>
             </Card>

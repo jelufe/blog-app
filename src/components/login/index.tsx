@@ -1,4 +1,5 @@
-import { Button, Col, Form, Input, Row, message, Card } from "antd"
+import { GoogleOutlined } from "@ant-design/icons";
+import { Button, Col, Form, Input, Row, message, Card, Divider } from "antd"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/hooks/useAuth";
 
@@ -12,11 +13,18 @@ export const Login = () => {
         try {
             await auth.authenticate(values.email, values.password);
 
-            navigate('/users');
+            navigate('/dashboard');
         } catch (error) {
             message.error('Usuário e/ou senha inválidos');
         }
+    }
 
+    async function openRegister() {
+        navigate('/register');
+    }
+
+    async function openHome() {
+        navigate('/');
     }
 
     return (
@@ -36,7 +44,9 @@ export const Login = () => {
             >
                 <Col span={24}>
                     <div>
-                        <h2 style={{ textAlign: 'center', marginBottom: '5vh' }}>Blog</h2>
+                        <h2 style={{ textAlign: 'center', marginBottom: '5vh' }}>
+                            <a onClick={openHome}>Blog</a>
+                        </h2>
                     </div>
                     <Form
                         name="login"
@@ -71,7 +81,14 @@ export const Login = () => {
                             Entrar 
                             </Button>
                         </Form.Item>
+                        Não tem uma conta? <a onClick={openRegister}>clique aqui para criar uma conta!</a>
                     </Form>
+                    <Divider/>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <Button type="primary" shape="round" icon={<GoogleOutlined />} danger>
+                            Entrar com uma conta Google
+                        </Button>
+                    </div>
                 </Col>
             </Card>
         </Row>

@@ -12,15 +12,15 @@ const { Header, Content, Sider } = Layout;
 export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths : string[]}) => {
     const navigate = useNavigate();
 
-    async function openPanel() {
-        navigate('/users');
+    async function openHome() {
+        navigate('/');
     }
 
     return (
         <Layout>
             <Header className="header">
                 <div className="logo-title">
-                    <a style={{ color: 'white' }} onClick={() => openPanel()}>
+                    <a style={{ color: 'white' }} onClick={() => openHome()}>
                         Blog
                     </a>
                 </div>
@@ -36,7 +36,7 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                     <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['users']}
+                    defaultOpenKeys={['dashboard']}
                     style={{ height: '100%', borderRight: 0 }}
                     >
                         <SubMenu key="dashboard" icon={<DashboardOutlined />} title="Dashboard">
