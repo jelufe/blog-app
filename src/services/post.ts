@@ -1,5 +1,6 @@
 import { IComment } from "../models/comment.interface";
 import { IPost } from "../models/post.interface";
+import { IVisualization } from "../models/visualization.interface";
 import { Api } from "./api";
 
 export async function GetAllPosts() {
@@ -41,6 +42,22 @@ export async function GetComments(postId: number) {
         const reponse = await api.instance.get(`post/${postId}/comment`);
 
         return reponse.data.data as IComment[];
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function GetVisualization(userId: number | null, sessionId: string | null, postId: number) {
+    try {
+        const api = new Api();
+        const reponse = await api.instance.get(`post/${postId}/visualization`, {
+            params: {
+                userId: userId,
+                sessionId: sessionId
+            },
+        });
+
+        return reponse.data.data as IVisualization;
     } catch (error) {
         return null;
     }

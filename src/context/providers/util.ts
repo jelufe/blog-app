@@ -30,3 +30,16 @@ export async function LoginRequest(email: string, password: string) {
         return null;
     }
 }
+
+export function setSessionLocalStorage(sessionId: string) {
+    localStorage.setItem('s', sessionId);
+}
+
+export function getSessionLocalStorage() {
+    const sessionId = localStorage.getItem('s');
+
+    if (!sessionId)
+        return null;
+
+    return sessionId;
+}
