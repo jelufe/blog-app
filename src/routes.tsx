@@ -20,6 +20,7 @@ import { Register } from "./components/register"
 import { UserForm } from "./components/users/form"
 import { ListUsers } from "./components/users/list"
 import { AuthProvider } from "./context/providers/authProvider"
+import { UserTypeEnum } from "./enums/UserTypeEnum"
 
 export const RoutesApp = () => {
 
@@ -37,47 +38,47 @@ export const RoutesApp = () => {
                         <Register/>
                     } />
                     <Route path='/profile' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={< Profile />} paths={['Perfil']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/profile/password' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={<ProfilePassword />} paths={['Alterar Senha']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/users' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator]}>
                             <LayoutPanel children={<ListUsers />} paths={['Usuários', 'Listar Usuários']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/dashboard' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<DashboardCharts />} paths={['Dashboard', 'Ver Dashboard']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/users/create' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator]}>
                             <LayoutPanel children={<UserForm />} paths={['Usuários', 'Criar Usuário']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/users/:id' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator]}>
                             <LayoutPanel children={<UserForm />} paths={['Usuários', 'Atualizar Usuário']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/posts' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<ListPosts />} paths={['Publicações', 'Listar Publicações']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/posts/create' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<PostForm />} paths={['Publicações', 'Criar Publicação']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/posts/:id' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<PostForm />} paths={['Publicações', 'Atualizar Publicação']} />
                         </ProtectedLayout>
                     } />
@@ -85,42 +86,42 @@ export const RoutesApp = () => {
                         <LayoutApp children={<PostDetail/>}/>
                     } />
                     <Route path='/comments' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={<ListComments />} paths={['Comentários', 'Listar Comentários']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/comments/create' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={<CommentForm />} paths={['Comentários', 'Criar Comentário']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/comments/:id' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={<CommentForm />} paths={['Comentários', 'Atualizar Comentário']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/images/create' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<ImageForm />} paths={['Imagens', 'Enviar Imagem']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/images' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer]}>
                             <LayoutPanel children={<ListImages />} paths={['Imagens', 'Listar Imagens']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/notifications' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator, UserTypeEnum.Writer, UserTypeEnum.Reader]}>
                             <LayoutPanel children={<ListNotifications />} paths={['Notificações', 'Listar Notificações']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/notifications/create' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator]}>
                             <LayoutPanel children={<NotificationForm />} paths={['Notificações', 'Criar Notificação']} />
                         </ProtectedLayout>
                     } />
                     <Route path='/notifications/:id' element={
-                        <ProtectedLayout>
+                        <ProtectedLayout userTypesAllowed={[UserTypeEnum.Administrator]}>
                             <LayoutPanel children={<NotificationForm />} paths={['Notificações', 'Atualizar Notificação']} />
                         </ProtectedLayout>
                     } />

@@ -1,6 +1,7 @@
 import { Button, Col, Form, Input, Row, message, Card, Select } from "antd"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/hooks/useAuth";
+import { getUserLocalStorage } from "../../context/providers/util";
 import { UserTypeEnum } from "../../enums/UserTypeEnum";
 import { InsertUser } from "../../services/user";
 
@@ -22,7 +23,12 @@ export const Register = () => {
         try {
             await auth.authenticate(values.email, values.password);
 
-            navigate('/users');
+            const user = getUserLocalStorage();
+
+            if (UserTypeEnum.Reader == user?.role)
+                navigate('/comments');
+            else
+                navigate('/dashboard');
         } catch (error) {
             message.error('Usuário e/ou senha inválidos');
         }

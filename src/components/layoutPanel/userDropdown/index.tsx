@@ -3,6 +3,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { getUserLocalStorage, removeUserLocalStorage } from '../../../context/providers/util';
 import { useNavigate } from 'react-router-dom';
+import { UserTypeEnum } from '../../../enums/UserTypeEnum';
 
 export const UserDropdown = () => {
     const navigate = useNavigate();
@@ -12,7 +13,11 @@ export const UserDropdown = () => {
     const handleMenuClick = (e: { key: string; }) => {
         if (e.key === '1') {
             setDropdownVisible(false);
-            navigate('/dashboard');
+            
+            if (UserTypeEnum.Reader == user?.role)
+                navigate('/comments');
+            else
+                navigate('/dashboard');
         }
         if (e.key === '2') {
             setDropdownVisible(false);

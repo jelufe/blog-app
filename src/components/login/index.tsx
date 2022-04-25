@@ -2,6 +2,8 @@ import { GoogleOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row, message, Card, Divider } from "antd"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/hooks/useAuth";
+import { getUserLocalStorage } from "../../context/providers/util";
+import { UserTypeEnum } from "../../enums/UserTypeEnum";
 
 export const Login = () => {
 
@@ -13,7 +15,13 @@ export const Login = () => {
         try {
             await auth.authenticate(values.email, values.password);
 
-            navigate('/dashboard');
+            const user = getUserLocalStorage();
+            
+            if (UserTypeEnum.Reader == user?.role)
+                navigate('/comments');
+            else
+                navigate('/dashboard');
+
         } catch (error) {
             message.error('Usuário e/ou senha inválidos');
         }
