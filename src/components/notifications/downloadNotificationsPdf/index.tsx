@@ -1,9 +1,9 @@
 import { FilePdfOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
-import moment from "antd/node_modules/moment";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { INotification } from "../../../models/notification.interface";
+import moment from 'moment';
 
 export const DownloadNotificationsPdf = (props : {notifications: INotification[]}) => {
 
