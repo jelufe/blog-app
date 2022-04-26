@@ -1,11 +1,11 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { ConfigProvider, Empty, message, Row, Space, Spin, Table } from "antd";
-import moment from "antd/node_modules/moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { INotification } from "../../../models/notification.interface";
 import { GetNotifications, RemoveNotification } from "../../../services/notification";
 import { DownloadNotificationsPdf } from "../downloadNotificationsPdf";
+import moment from 'moment';
 
 export const ListNotifications = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
