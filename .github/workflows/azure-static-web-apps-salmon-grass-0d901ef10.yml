@@ -19,8 +19,7 @@ jobs:
         with:
           submodules: true
       - name: Config space size
-        run: |
-          set NODE_OPTIONS=--max_old_space_size=4096
+        run: "export NODE_OPTIONS=--max_old_space_size=4096"
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
