@@ -13,17 +13,6 @@ export async function GetImages() {
     }
 }
 
-export async function GetImage(imageId: number) {
-    try {
-        const api = new Api();
-        const response = await api.instance.get(`image/${imageId}`, { responseType: "arraybuffer" });
-
-        return Buffer.from(response.data, "binary").toString("base64");
-    } catch (error) {
-        return null;
-    }
-}
-
 export async function RemoveImage(imageId: number) {
     const api = new Api();
     const request = await api.instance.delete(`image/${imageId}`);

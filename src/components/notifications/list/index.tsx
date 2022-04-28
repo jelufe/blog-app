@@ -6,6 +6,7 @@ import { INotification } from "../../../models/notification.interface";
 import { GetNotifications, RemoveNotification } from "../../../services/notification";
 import { DownloadNotificationsPdf } from "../downloadNotificationsPdf";
 import moment from 'moment';
+import { ViewNotification } from "../view";
 
 export const ListNotifications = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -62,6 +63,7 @@ export const ListNotifications = () => {
             key: 'actions',
             render: (record: any) => (
                 <Space size="middle">
+                    <ViewNotification id={record.notificationId} name={record.title}/>
                     <a onClick={() => navigate(`/notifications/${record.notificationId}`)} key="list-edit">Editar</a>
                     <a onClick={() => deleteNotification(record.notificationId)} key="list-delete">Excluir</a>
                 </Space>

@@ -9,5 +9,6 @@ export interface IPost {
     image: {
         imageId: number;
         name: string;
+        path: string;
     }
 }

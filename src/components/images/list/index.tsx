@@ -55,7 +55,7 @@ export const ListImages = () => {
             key: 'actions',
             render: (record: any) => (
                 <Space size="middle">
-                    <ViewImage imageId={record.imageId} imageName={record.name} />
+                    <ViewImage imageId={record.imageId} imageName={record.name} path={record.path} />
                     <a onClick={() => deleteImage(record.imageId)} key="list-delete">Excluir</a>
                 </Space>
             ),

@@ -6,6 +6,7 @@ import { UserTypeEnum } from "../../../enums/UserTypeEnum";
 import { IUser } from "../../../models/user.interface";
 import { GetUsers, RemoveUser } from "../../../services/user";
 import { DownloadUsersPdf } from "../downloadUsersPdf";
+import { ViewUser } from "../view";
 
 export const ListUsers = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -85,6 +86,7 @@ export const ListUsers = () => {
             key: 'actions',
             render: (record: any) => (
                 <Space size="middle">
+                    <ViewUser id={record.userId} name={record.name}/>
                     <a onClick={() => navigate(`/users/${record.userId}`)} key="list-edit">Editar</a>
                     <a onClick={() => deleteUser(record.userId)} key="list-delete">Excluir</a>
                 </Space>
