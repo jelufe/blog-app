@@ -2,7 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import { IAuthProvider } from "../interfaces/authProvider.interface";
 import { IContext } from "../interfaces/context.interface";
 import { IUserAuth } from "../interfaces/userAuth.interface";
-import { getUserLocalStorage, LoginRequest, setUserLocalStorage } from "./util";
+import { getUserLocalStorage, LoginRequest, LoginRequestGoogle, setUserLocalStorage } from "./util";
 import jwtDecode from "jwt-decode";
 import { IJWTUser } from "../../models/jwtUser.interface";
 
@@ -35,13 +35,31 @@ export const AuthProvider = ({children}: IAuthProvider) => {
         setUserLocalStorage(payload);
     }
 
+    async function authenticateGoogle(tokenGoogle: string) {
+        const response = await LoginRequestGoogle(tokenGoogle);
+
+        var decoded = jwtDecode<IJWTUser>(response.data.token);
+
+        const payload = {
+            token: response.data.token,
+            userId: decoded.userId,
+            username: decoded.username,
+            email: decoded.email,
+            role: decoded.role,
+            googleId: decoded.googleId
+        };
+
+        setUser(payload);
+        setUserLocalStorage(payload);
+    }
+
     function logout() {
         setUser(null);
         setUserLocalStorage(null);
     }
 
     return (
-        <AuthContext.Provider value={{...user, authenticate, logout}}>
+        <AuthContext.Provider value={{...user, authenticate, authenticateGoogle, logout}}>
             {children}
         </AuthContext.Provider>
     )

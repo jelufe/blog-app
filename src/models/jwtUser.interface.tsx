@@ -3,4 +3,5 @@ export interface IJWTUser {
     username: string;
     email: string;
     role: string;
+    googleId: string;
 }

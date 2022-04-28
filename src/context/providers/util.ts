@@ -31,6 +31,17 @@ export async function LoginRequest(email: string, password: string) {
     }
 }
 
+export async function LoginRequestGoogle(tokenGoogle: string) {
+    try {
+        const api = new Api();
+        const response = await api.instance.post('auth/google', {token: tokenGoogle});
+
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export function setSessionLocalStorage(sessionId: string) {
     localStorage.setItem('s', sessionId);
 }

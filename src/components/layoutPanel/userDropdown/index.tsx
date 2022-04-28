@@ -1,4 +1,4 @@
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { getUserLocalStorage, removeUserLocalStorage } from '../../../context/providers/util';
@@ -25,7 +25,11 @@ export const UserDropdown = () => {
         }
         if (e.key === '3') {
             setDropdownVisible(false);
-            navigate('/profile/password');
+
+            if (!user.googleId)
+                navigate('/profile/password');
+            else
+                message.error('Página não disponível para usuário Google');
         }
         if (e.key === '4') {
             setDropdownVisible(false);
