@@ -1,6 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { Col, Modal, Row, Spin } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserTypeEnum } from "../../../enums/UserTypeEnum";
 import { IUser } from "../../../models/user.interface";
 import { GetUser } from "../../../services/user";
@@ -10,10 +10,6 @@ export const ViewUser = (props : {id: number, name: string}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     let [loading, setLoading] = useState<boolean>();
     let [user, setUser] = useState<IUser | null>();
-
-    useEffect(() => {
-        initializeImage();
-    }, []);
 
     async function initializeImage() {
         setLoading(true);
@@ -28,6 +24,7 @@ export const ViewUser = (props : {id: number, name: string}) => {
 
     const showModal = () => {
         setIsModalVisible(true);
+        initializeImage();
     };
 
     const handleCancel = () => {

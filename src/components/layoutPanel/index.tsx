@@ -10,16 +10,22 @@ import { getUserLocalStorage } from '../../context/providers/util';
 import { UserTypeEnum } from '../../enums/UserTypeEnum';
 import { WriterMenu } from './writerMenu';
 import { ReaderMenu } from './readerMenu';
+import { useState } from 'react';
 
 const { Header, Content, Sider } = Layout;
 
 export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths : string[]}) => {
     const user = getUserLocalStorage();
     const navigate = useNavigate();
+    let [collapsed, setCollapsed] = useState<boolean>();
 
     async function openHome() {
         navigate('/');
     }
+
+    const onCollapse = (collapsed: boolean) => {
+        setCollapsed(collapsed);
+    };
 
     return (
         <Layout>
@@ -37,7 +43,7 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                 </div>
             </Header>
             <Layout>
-                <Sider width={200} className="site-layout-background">
+                <Sider width={200} className="site-layout-background" collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     {
                         user?.role == UserTypeEnum.Administrator ?
                             <AdministratorMenu/>

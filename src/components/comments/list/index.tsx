@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { IComment } from "../../../models/comment.interface";
 import { GetComments, RemoveComment } from "../../../services/comment";
 import { DownloadCommentsPdf } from "../downloadCommentsPdf";
+import { ViewComment } from "../view";
 
 export const ListComments = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -61,6 +62,7 @@ export const ListComments = () => {
             key: 'actions',
             render: (record: any) => (
                 <Space size="middle">
+                    <ViewComment id={record.commentId} name={record.post.title}/>
                     <a onClick={() => navigate(`/comments/${record.commentId}`)} key="list-edit">Editar</a>
                     <a onClick={() => deleteComment(record.commentId)} key="list-delete">Excluir</a>
                 </Space>

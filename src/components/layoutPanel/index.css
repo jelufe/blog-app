@@ -10,6 +10,10 @@
     background: #fff;
 }
 
+.ant-layout-sider-trigger {
+    background: #001529;
+}
+
 .avatar {
     float: right;
 }

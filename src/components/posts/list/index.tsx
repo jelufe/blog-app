@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { IPost } from "../../../models/post.interface";
 import { GetPosts, RemovePost } from "../../../services/post";
 import { DownloadPostsPdf } from "../downloadPostsPdf";
+import { ViewPost } from "../view";
 
 export const ListPosts = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -54,6 +55,7 @@ export const ListPosts = () => {
             key: 'actions',
             render: (record: any) => (
                 <Space size="middle">
+                    <ViewPost id={record.postId} name={record.title} />
                     <a onClick={() => navigate(`/posts/${record.postId}`)} key="list-edit">Editar</a>
                     <a onClick={() => deletePost(record.postId)} key="list-delete">Excluir</a>
                 </Space>
