@@ -32,7 +32,7 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
             <Header className="header">
                 <div className="logo-title">
                     <a style={{ color: 'white' }} onClick={() => openHome()}>
-                        Blog
+                        Devzeiros
                     </a>
                 </div>
                 <div className="avatar">
@@ -70,7 +70,7 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                     >
                         {children}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Blog ©2022</Footer>
+                    <Footer style={{ textAlign: 'center' }}>Devzeiros ©2022</Footer>
                 </Layout>
             </Layout>
         </Layout>

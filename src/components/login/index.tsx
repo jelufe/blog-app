@@ -97,7 +97,7 @@ export const Login = () => {
                         <Col span={24}>
                             <div>
                                 <h2 style={{ textAlign: 'center', marginBottom: '5vh' }}>
-                                    <a onClick={openHome}>Blog</a>
+                                    <a onClick={openHome}>Devzeiros</a>
                                 </h2>
                             </div>
                             <Form
