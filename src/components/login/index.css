@@ -1,0 +1,11 @@
+.card-responsive {
+    padding: 24;
+    width: 40%;
+}
+
+@media only screen and (max-width: 700px) {
+    .card-responsive {
+        width: 80%;
+        padding: 24;
+    }
+}

@@ -6,6 +6,7 @@ import { getUserLocalStorage } from "../../context/providers/util";
 import { UserTypeEnum } from "../../enums/UserTypeEnum";
 import { GoogleLogin } from 'react-google-login';
 import { useState } from "react";
+import './index.css';
 
 export const Login = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -76,12 +77,7 @@ export const Login = () => {
                 background: '#f0f2f5'
             }}
         >
-            <Card
-                style={{
-                    padding: 24,
-                    width: '40%'
-                }}
-            >
+            <Card className="card-responsive">
                 {
                     loading ?
                         <Row
