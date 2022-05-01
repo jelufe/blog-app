@@ -61,12 +61,13 @@ export const LayoutPanel = ({children, paths} : {children : JSX.Element, paths :
                         })}
                     </Breadcrumb>
                     <Content
-                    className="site-layout-background"
-                    style={{
-                        padding: 24,
-                        margin: 0,
-                        minHeight: '67.8vh',
-                    }}
+                        className="site-layout-background"
+                        style={{
+                            padding: 24,
+                            margin: 0,
+                            minHeight: '67.8vh',
+                            overflowX: 'auto'
+                        }}
                     >
                         {children}
                     </Content>
