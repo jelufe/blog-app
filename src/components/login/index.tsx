@@ -98,8 +98,6 @@ export const Login = () => {
                             </div>
                             <Form
                                 name="login"
-                                labelCol={{ span: 4 }}
-                                wrapperCol={{ span: 20 }}
                                 onFinish={onFinish}
                             >
                                 <Form.Item
@@ -118,17 +116,16 @@ export const Login = () => {
                                     <Input.Password />
                                 </Form.Item>
 
-                                <Form.Item wrapperCol={{
-                                    offset: 20,
-                                    span: 4
-                                }}>
-                                    <Button
-                                        type='primary'
-                                        htmlType='submit'
-                                    >
-                                    Entrar 
-                                    </Button>
-                                </Form.Item>
+                                <Col span={24} style={{ textAlign: 'right' }}>
+                                    <Form.Item>
+                                        <Button
+                                            type='primary'
+                                            htmlType='submit'
+                                        >
+                                        Entrar 
+                                        </Button>
+                                    </Form.Item>
+                                </Col>
                                 Não tem uma conta? <a onClick={openRegister}>clique aqui para criar uma conta!</a>
                             </Form>
                             <Divider/>

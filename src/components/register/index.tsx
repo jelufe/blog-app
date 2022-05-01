@@ -6,6 +6,7 @@ import { useAuth } from "../../context/hooks/useAuth";
 import { getUserLocalStorage } from "../../context/providers/util";
 import { UserTypeEnum } from "../../enums/UserTypeEnum";
 import { InsertUser } from "../../services/user";
+import './index.css';
 
 export const Register = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
@@ -64,12 +65,7 @@ export const Register = () => {
                 background: '#f0f2f5'
             }}
         >
-            <Card
-                style={{
-                    padding: 24,
-                    width: '40%'
-                }}
-            >
+            <Card className="card-responsive">
                 {
                     loading ?
                         <Row
@@ -90,8 +86,6 @@ export const Register = () => {
                             </div>
                             <Form
                                 name="register"
-                                labelCol={{ span: 4 }}
-                                wrapperCol={{ span: 20 }}
                                 onFinish={onFinish}
                             >
                                 <Form.Item
@@ -128,17 +122,16 @@ export const Register = () => {
                                     <Input.Password />
                                 </Form.Item>
 
-                                <Form.Item wrapperCol={{
-                                    offset: 20,
-                                    span: 4
-                                }}>
-                                    <Button
-                                        type='primary'
-                                        htmlType='submit'
-                                    >
-                                    Registrar 
-                                    </Button>
-                                </Form.Item>
+                                <Col span={24} style={{ textAlign: 'right' }}>
+                                    <Form.Item>
+                                        <Button
+                                            type='primary'
+                                            htmlType='submit'
+                                        >
+                                            Registrar 
+                                        </Button>
+                                    </Form.Item>
+                                </Col>
                                 Já tem uma conta? <a onClick={openLogin}>clique aqui para entrar!</a>
                             </Form>
                         </Col>
